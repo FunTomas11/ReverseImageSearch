@@ -1,0 +1,50 @@
+﻿.file-drop-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #4caf50;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    background-color: #e8f5e9;
+  }
+
+  .file-drop-content {
+    font-family: Arial, sans-serif;
+    color: #4caf50;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin-top: 5px;
+    color: #666;
+  }
+}
+
+.image-preview {
+  margin-top: 20px;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    border: 2px solid #005cbb;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    margin-top: 10px;
+    color: #005cbb;
+    font-weight: bold;
+  }
+}
+
