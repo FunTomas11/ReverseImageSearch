@@ -1,0 +1,27 @@
+<div class="file-drop-container">
+  <ngx-file-drop
+    (onFileDrop)="onFileDropped($event)"
+    (onFileOver)="fileOver($event)"
+    (onFileLeave)="fileLeave($event)"
+    [multiple]="false"
+  >
+  <div class="file-drop-content">
+    <p class="placeholder" *ngIf="!previewUrl">
+      Drag & drop files here or <span (click)="fileInput.click()">click to upload</span>
+    </p>
+    <input
+      #fileInput
+      type="file"
+      (change)="onFilesSelected($event)"
+      multiple
+      hidden
+    />
+  </div>
+  </ngx-file-drop>
+
+  <!-- Image Preview Section -->
+  <div *ngIf="previewUrl" class="image-preview">
+    <img [src]="previewUrl" alt="Uploaded Image Preview" />
+    <p>{{ selectedFile?.name }}</p>
+  </div>
+</div>
