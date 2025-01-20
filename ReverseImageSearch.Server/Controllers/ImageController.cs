@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ReverseImageSearch.Server.Data;
+using ReverseImageSearch.Server.Models;
 
 namespace ReverseImageSearch.Server.Controllers
 {
@@ -14,7 +16,7 @@ namespace ReverseImageSearch.Server.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadImage(IFormFile file)
+        public async Task<IActionResult> UploadImage(IFormFile file, [FromServices] AppDbContext dbContext)
         {
             if (file == null)
             {
@@ -31,7 +33,17 @@ namespace ReverseImageSearch.Server.Controllers
                     await file.CopyToAsync(fileStream);
                 }
 
-                return Ok(new { FileName = uniqueFileName, FilePath = $"uploads/images/{uniqueFileName}" });
+                var metadata = new ImageMetadata
+                {
+                    FileName = file.FileName,
+                    FilePath = $"uploads/{uniqueFileName}",
+                    UploadDate = DateTime.UtcNow
+                };
+
+                dbContext.ImageMetadata.Add(metadata);
+                await dbContext.SaveChangesAsync();
+
+                return Ok(new { metadata.Id, metadata.FileName, metadata.FilePath, metadata.UploadDate });
             }
             catch (Exception ex)
             {

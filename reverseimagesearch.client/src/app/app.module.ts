@@ -8,17 +8,18 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatToolbar} from '@angular/material/toolbar';
 import { DropContainerComponent } from './components/drop-container/drop-container.component';
 import {NgxFileDropModule} from 'ngx-file-drop';
+import {MatButton} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     AppComponent,
     DropContainerComponent
   ],
-  imports: [
-    BrowserModule, HttpClientModule,
-    AppRoutingModule, MatToolbar,
-    NgxFileDropModule
-  ],
+    imports: [
+        BrowserModule, HttpClientModule,
+        AppRoutingModule, MatToolbar,
+        NgxFileDropModule, MatButton
+    ],
   providers: [
     provideAnimationsAsync()
   ],
